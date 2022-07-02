@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Portrait2Landscape</string>
+    <string name="app_desc">Force to change portrait video in Bilibili App to landscape</string>
+</resources>
