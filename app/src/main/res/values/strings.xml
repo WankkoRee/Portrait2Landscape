@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Portrait2Landscape</string>
     <string name="app_desc">Force to change portrait video in Bilibili App to landscape</string>
+    <string-array name="scope" translatable="false">
+        <item>tv.danmaku.bili</item>
+        <item>com.bilibili.app.in</item>
+    </string-array>
 </resources>
