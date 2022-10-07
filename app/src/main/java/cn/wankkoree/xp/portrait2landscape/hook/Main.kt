@@ -1,4 +1,4 @@
-package cn.wankkoree.xposed.portrait2landscape.hook
+package cn.wankkoree.xp.portrait2landscape.hook
 
 import com.highcapable.yukihookapi.YukiHookAPI
 import com.highcapable.yukihookapi.annotation.xposed.InjectYukiHookWithXposed

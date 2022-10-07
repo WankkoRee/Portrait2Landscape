@@ -16,15 +16,15 @@ android {
         }
     }
 
-    namespace 'cn.wankkoree.xposed.portrait2landscape'
+    namespace 'cn.wankkoree.xp.portrait2landscape'
     compileSdk 32
 
     defaultConfig {
-        applicationId "cn.wankkoree.xposed.portrait2landscape"
+        applicationId "cn.wankkoree.xp.portrait2landscape"
         minSdk 21
         targetSdk 32
-        versionCode 3
-        versionName "v1.2"
+        versionCode 4
+        versionName "v2.0"
     }
 
     buildTypes {
