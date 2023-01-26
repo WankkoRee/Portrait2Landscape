@@ -1,18 +1,19 @@
 package cn.wankkoree.xp.portrait2landscape.hook
 
 import com.highcapable.yukihookapi.hook.entity.YukiBaseHooker
+import com.highcapable.yukihookapi.hook.factory.MembersType
 import com.highcapable.yukihookapi.hook.log.loggerD
-import com.highcapable.yukihookapi.hook.type.java.StringType
+import com.highcapable.yukihookapi.hook.type.java.StringClass
 
 class Hook: YukiBaseHooker() {
     override fun onHook() {
         "com.bilibili.pegasus.api.model.BasicIndexItem".hook {
             injectMember {
-                allConstructors()
+                allMembers(MembersType.CONSTRUCTOR)
                 afterHook {
                     val uri = field {
                         name = "uri"
-                        type = StringType
+                        type = StringClass
                     }.get(instance)
                     uri.string().let {
                         if (it.isNotEmpty()) {
@@ -28,7 +29,7 @@ class Hook: YukiBaseHooker() {
             injectMember {
                 method {
                     name = "setUri"
-                    param(StringType)
+                    param(StringClass)
                 }
                 beforeHook {
                     (args[0]!! as String).let {

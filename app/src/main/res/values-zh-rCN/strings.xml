@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">不要竖屏</string>
-    <string name="app_desc">强制将哔哩哔哩App中的竖屏视频改为横屏播放</string>
+    <string name="app_desc">强制将哔哩哔哩App中的竖屏视频由 看一看 播放器改为 传统 播放器播放</string>
 </resources>

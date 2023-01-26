@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'com.google.devtools.ksp' version '1.7.0-1.0.6'
+    id 'com.google.devtools.ksp' version '1.7.22-1.0.8'
 }
 
 android {
@@ -13,18 +13,21 @@ android {
             storeFile file(ANDROID_STORE_FILE)
             v1SigningEnabled true
             v2SigningEnabled true
+            enableV3Signing true
         }
     }
 
-    namespace 'cn.wankkoree.xp.portrait2landscape'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
+        def git_count = "git rev-list HEAD --count".execute().text.trim()
+        def git_hash = "git rev-list HEAD --abbrev-commit --max-count=1".execute().text.trim()
+
         applicationId "cn.wankkoree.xp.portrait2landscape"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 4
-        versionName "v2.0"
+        versionName "v2.0.$git_count.$git_hash"
     }
 
     buildTypes {
@@ -39,6 +42,7 @@ android {
             signingConfig signingConfigs.release
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
@@ -46,17 +50,24 @@ android {
     kotlinOptions {
         jvmTarget = 11
     }
-    applicationVariants.all { variant ->
-        variant.outputs.all {
+
+    namespace 'cn.wankkoree.xp.portrait2landscape'
+
+    applicationVariants.configureEach { variant ->
+        variant.outputs.configureEach {
             outputFileName = "${defaultConfig.applicationId}-${defaultConfig.versionName}_${defaultConfig.versionCode}-${variant.buildType.name}.apk"
         }
     }
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.8.0'
+    def yukiHookApiVersion = '1.1.6'
 
-    compileOnly 'de.robv.android.xposed:api:82'
-    implementation 'com.highcapable.yukihookapi:api:1.0.92'
-    ksp 'com.highcapable.yukihookapi:ksp-xposed:1.0.92'
+    // Xposed Hook
+    compileOnly 'de.robv.android.xposed:api:82'                                                     // Xposed
+    implementation "com.highcapable.yukihookapi:api:$yukiHookApiVersion"                            // Yuki Hook API
+    ksp "com.highcapable.yukihookapi:ksp-xposed:$yukiHookApiVersion"                                // Yuki Hook API - KSP
+
+    // 语言特性支持
+    implementation 'androidx.core:core-ktx:1.9.0'                                                   // Jetpack
 }
